@@ -1,0 +1,51 @@
+.index {
+  width: 100vw;
+  height: 100vh;
+  background: url("/images/background.jpg");
+
+  .container {
+    width: 80%;
+    height: 500px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background: rgba(49, 151, 149, 0.9);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 5px;
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .main {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px 20px;
+
+      li {
+        width: 23.5%;
+        line-height: 30px;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+          background: var(--chakra-colors-teal-600);
+        }
+
+        h2 {
+          font-size: 18px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
