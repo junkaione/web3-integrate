@@ -21,6 +21,7 @@ import {
   polygon,
   sepolia,
 } from 'wagmi/chains';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const { wallets } = getDefaultWallets();
 
@@ -51,7 +52,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>{children}</RainbowKitProvider>
+        <RainbowKitProvider>
+          <ChakraProvider>
+            {children}
+          </ChakraProvider>
+        </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );
