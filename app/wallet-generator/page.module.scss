@@ -1,0 +1,47 @@
+.generatorContainer {
+  width: 800px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 5px;
+
+  h1 {
+    font-size: 22px;
+    color: var(--chakra-colors-teal-500);
+  }
+
+  .generatorInput {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    :global {
+      .chakra-numberinput {
+        flex: 1;
+      }
+    }
+  }
+}
+
+.walletList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  .walletItem {
+    display: flex;
+    align-items: center;
+
+    & > p {
+      width: 70px;
+    }
+  }
+}

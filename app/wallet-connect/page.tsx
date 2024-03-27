@@ -4,9 +4,9 @@ function Page() {
   return (
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        padding: 12,
+        position: 'fixed',
+        top: 20,
+        right: 20
       }}
     >
       <ConnectButton />
