@@ -1,5 +1,6 @@
 'use client';
 
+import { ChakraProvider } from '@chakra-ui/react';
 import {
   RainbowKitProvider,
   getDefaultConfig,
@@ -13,15 +14,7 @@ import {
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as React from 'react';
 import { WagmiProvider } from 'wagmi';
-import {
-  arbitrum,
-  base,
-  mainnet,
-  optimism,
-  polygon,
-  sepolia,
-} from 'wagmi/chains';
-import { ChakraProvider } from '@chakra-ui/react';
+import { sepolia } from 'wagmi/chains';
 
 const { wallets } = getDefaultWallets();
 
@@ -35,14 +28,7 @@ const config = getDefaultConfig({
       wallets: [argentWallet, trustWallet, ledgerWallet],
     },
   ],
-  chains: [
-    mainnet,
-    polygon,
-    optimism,
-    arbitrum,
-    base,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [sepolia] : []),
-  ],
+  chains: [sepolia],
   ssr: true,
 });
 
@@ -53,9 +39,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
-          <ChakraProvider>
-            {children}
-          </ChakraProvider>
+          <ChakraProvider>{children}</ChakraProvider>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

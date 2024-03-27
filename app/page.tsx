@@ -29,11 +29,13 @@ function Page() {
             </Link>
           </li>
           <li>
-            <h2>钱包连接</h2>
-            <p>
-              使用 ethers.js、RainbowKit 连接
-              Metamask，实现了连接、断开、查询余额、刷新余额、转账等加密钱包的极简功能。
-            </p>
+            <Link href="/erc20-token">
+              <h2>ERC20 代币</h2>
+              <p>
+                基于 ERC20 协议实现的代币。实现了 ERC20
+                的所有功能。包含了代币的发行、转账、查询余额、查询总量、授权、授权转账等功能。
+              </p>
+            </Link>
           </li>
           <li>
             <h2>钱包连接</h2>
