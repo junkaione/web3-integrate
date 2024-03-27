@@ -23,11 +23,10 @@ function Page() {
             </Link>
           </li>
           <li>
-            <h2>钱包连接</h2>
-            <p>
-              使用 ethers.js、RainbowKit 连接
-              Metamask，实现了连接、断开、查询余额、刷新余额、转账等加密钱包的极简功能。
-            </p>
+            <Link href="/wallet-number-generator">
+              <h2>钱包靓号生成器</h2>
+              <p>使用 ethers.js 实现的钱包靓号生成器。</p>
+            </Link>
           </li>
           <li>
             <h2>钱包连接</h2>
