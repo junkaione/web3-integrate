@@ -31,6 +31,9 @@ const Page = () => {
           <Detail />
           <BalanceOf />
           <Transfer />
+          <Approve />
+          <Allowance />
+          <TransferFrom />
         </>
       ) : (
         <p className={styles.info}>请先连接钱包</p>
@@ -169,12 +172,163 @@ const Transfer = () => {
       />
       <Button
         colorScheme="teal"
-        disabled={isPending || isLoading}
+        isLoading={isPending || isLoading}
         onClick={transfer}
       >
         转账
       </Button>
-      {isPending || isLoading ? <Spinner /> : null}
+    </div>
+  );
+};
+
+const Approve = () => {
+  const toast = useToast();
+
+  const { data: hash, isPending, writeContract } = useWriteContract();
+  const { isLoading, isSuccess } = useWaitForTransactionReceipt({
+    hash: hash,
+  });
+
+  const [address, setAddress] = useState<string>('');
+  const [amount, setAmount] = useState<number>();
+
+  const approve = () => {
+    writeContract({
+      ...contract,
+      functionName: 'approve',
+      args: [address, amount],
+    });
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast({
+        title: '授权成功',
+        status: 'success',
+      });
+    }
+  }, [isSuccess]);
+
+  return (
+    <div className={styles.approve}>
+      <h1>授权</h1>
+      <Input
+        placeholder="输入授权的钱包地址"
+        value={address}
+        onInput={(e) => setAddress((e.target as any).value)}
+      />
+      <Input
+        placeholder="输入授权的代币数量"
+        value={amount}
+        onInput={(e) => setAmount((e.target as any).value)}
+      />
+      <Button
+        colorScheme="teal"
+        isLoading={isPending || isLoading}
+        onClick={approve}
+      >
+        授权
+      </Button>
+    </div>
+  );
+};
+
+const Allowance = () => {
+  const [owner, setOwner] = useState<string>('');
+  const [spender, setSpender] = useState<string>('');
+  const [isFetching, setIsFetching] = useState<boolean>(false);
+
+  const { data, error, isError, isLoading } = useReadContract({
+    ...contract,
+    functionName: 'allowance',
+    args: [owner, spender],
+    query: {
+      enabled: isFetching,
+    },
+  });
+
+  useEffect(() => {
+    setIsFetching(false);
+  }, [data]);
+
+  return (
+    <div className={styles.allowance}>
+      <h1>查询代币授权余额</h1>
+      <Input
+        placeholder="输入授权人地址"
+        value={owner}
+        onInput={(e) => setOwner((e.target as any).value)}
+      />
+      <Input
+        placeholder="输入被授权人地址"
+        value={spender}
+        onInput={(e) => setSpender((e.target as any).value)}
+      />
+      <Button colorScheme="teal" onClick={() => setIsFetching(true)}>
+        查询
+      </Button>
+      {isLoading ? <Spinner /> : <div>{data?.toString()}</div>}
+      {isError ? (
+        <Alert status="error">{`查询失败，失败原因：${error}`}</Alert>
+      ) : null}
+    </div>
+  );
+};
+
+const TransferFrom = () => {
+  const toast = useToast();
+
+  const { data: hash, isPending, writeContract } = useWriteContract();
+  const { isLoading, isSuccess } = useWaitForTransactionReceipt({
+    hash: hash,
+  });
+
+  const [from, setFrom] = useState<string>('');
+  const [to, setTo] = useState<string>('');
+  const [amount, setAmount] = useState<number>();
+
+  const transferFrom = () => {
+    writeContract({
+      ...contract,
+      functionName: 'transferFrom',
+      args: [from, to, amount],
+    });
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast({
+        title: '转账成功',
+        status: 'success',
+      });
+    }
+  }, [isSuccess]);
+
+  return (
+    <div className={styles.transferFrom}>
+      <h1>通过授权账户转账</h1>
+      <Input
+        placeholder="输入授权的钱包地址"
+        value={from}
+        onInput={(e) => setFrom((e.target as any).value)}
+      />
+      <Input
+        placeholder="输入转账的钱包地址"
+        value={to}
+        onInput={(e) => setTo((e.target as any).value)}
+      />
+      <Input
+        placeholder="输入转账的代币数量"
+        value={amount}
+        onInput={(e) => setAmount((e.target as any).value)}
+      />
+      <Button
+        colorScheme="teal"
+        isLoading={isPending || isLoading}
+        onClick={transferFrom}
+      >
+        转账
+      </Button>
     </div>
   );
 };
