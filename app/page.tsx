@@ -38,11 +38,14 @@ function Page() {
             </Link>
           </li>
           <li>
-            <h2>钱包连接</h2>
-            <p>
-              使用 ethers.js、RainbowKit 连接
-              Metamask，实现了连接、断开、查询余额、刷新余额、转账等加密钱包的极简功能。
-            </p>
+            <Link href="/faucet">
+              <h2>ERC20 代币水龙头(智能合约版)</h2>
+              <p>
+                用于领取 ERC20
+                代币的水龙头，实现了简单的代币领取功能。这个版本的实现需要用户连接钱包，并由用户支付
+                gas 才可以领取。
+              </p>
+            </Link>
           </li>
           <li>
             <h2>钱包连接</h2>
