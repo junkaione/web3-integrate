@@ -17,7 +17,7 @@ const contract = {
   abi,
 };
 
-const page = () => {
+const Page = () => {
   const toast = useToast();
 
   const { isConnected } = useAccount();
@@ -89,4 +89,5 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
+

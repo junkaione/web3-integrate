@@ -64,11 +64,13 @@ function Page() {
             </Link>
           </li>
           <li>
-            <h2>钱包连接</h2>
-            <p>
-              使用 ethers.js、RainbowKit 连接
-              Metamask，实现了连接、断开、查询余额、刷新余额、转账等加密钱包的极简功能。
-            </p>
+            <Link href="/erc721-token">
+              <h2>NFT</h2>
+              <p>
+                基于 ERC721 开发的 NFT DAPP，涵盖NFT的图片上传到 IPFS 及铸造
+                NFT、销毁 NFT，查看我的所有 NFT 列表。
+              </p>
+            </Link>
           </li>
         </ul>
       </div>
