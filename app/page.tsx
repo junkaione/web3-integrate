@@ -58,11 +58,10 @@ function Page() {
             </Link>
           </li>
           <li>
-            <h2>钱包连接</h2>
-            <p>
-              使用 ethers.js、RainbowKit 连接
-              Metamask，实现了连接、断开、查询余额、刷新余额、转账等加密钱包的极简功能。
-            </p>
+            <Link href="/airdrop">
+              <h2>ERC20 代币空投</h2>
+              <p>使用空投合约实现ERC20代币的空投。</p>
+            </Link>
           </li>
           <li>
             <h2>钱包连接</h2>
